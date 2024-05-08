@@ -1,17 +1,19 @@
 import React from "react";
 import "./chessboard.css";
 
-const varticalAxist = [1, 2, 3, 4, 5, 6, 7, 8];
+const varticalAxist = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const ChessBoard = () => {
   let board = [];
-  for (let i = 0; i < horizontalAxis.length; i++) {
-    for (let j = 0; j < varticalAxist.length; j++) {
-      board.push(
-        <span>
-          {horizontalAxis[i]} {varticalAxist[j]}
-        </span>
-      );
+  for (let j = varticalAxist.length - 1; j >= 0; j--) {
+    for (let i = 0; i < horizontalAxis.length; i++) {
+      const number = j + i + 2;
+
+      if (number % 2 === 0) {
+        board.push(<div className="tile black-tile"></div>);
+      } else {
+        board.push(<div className="tile white-tile"></div>);
+      }
     }
   }
   return <div id="chessboard">{board}</div>;
